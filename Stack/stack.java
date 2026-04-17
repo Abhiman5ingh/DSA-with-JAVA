@@ -1,0 +1,62 @@
+package Stack;
+import java.util.*;
+public class stack {
+    public static void pushAtBottom(Stack<Integer> s, int data){
+        if(s.isEmpty()){
+            s.push(data);
+            return;
+        }
+        int top = s.pop(); 
+        pushAtBottom(s, data);
+        s.push(top);
+    }
+
+    public static String reverseString(String str){
+        Stack<Character> s = new Stack<>();
+        for(int i=0; i<str.length(); i++){
+            s.push(str.charAt(i));
+        }
+        StringBuilder sb = new StringBuilder();
+        while(!s.isEmpty()){
+            sb.append(s.pop());
+        }
+        str = sb.toString();
+        return str;
+    }
+
+    public static void reverseStack(Stack<Integer> s){
+        if(s.isEmpty()){
+            return;
+        }
+        int top = s.pop();
+        reverseStack(s);
+        pushAtBottom(s, top);
+    }
+
+    public static void print(Stack<Integer> s){
+        while(!s.isEmpty()){
+            System.out.println(s.peek());
+            s.pop();
+        }
+    }
+
+    public static void main(String args[]){
+        Stack<Integer> s = new Stack<>();
+        s.push(1);
+        s.push(2);
+        s.push(3);
+
+        // pushAtBottom(s, 4);
+        // while(!s.isEmpty()){
+        //     System.out.println(s.peek());
+        //     s.pop();
+        // }
+        // String str = "Hello World";
+        // System.out.println(reverseString(str));
+
+        print(s);
+        reverseStack(s);
+        print(s);
+    }
+    
+}
